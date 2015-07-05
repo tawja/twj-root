@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) 2015 Tawja (http://www.tawja.org)
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <!--
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>9</version>
+    </parent>
+    -->
+
+    <groupId>org.tawja</groupId>
+    <artifactId>root</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+	
+    <packaging>pom</packaging>
+
+    <organization>
+        <name>Tawja</name>
+        <url>http://www.tawja.org</url>
+    </organization>
+
+    <name>Tawja ROOT</name>
+    <description>ROOT Tawja Maven Project</description>
+    <inceptionYear>2015</inceptionYear>
+
+    <url>${project.organization.url}/project/root</url>
+	
+    <properties>
+        <!-- System Properties -->       
+        <user.name>tawja</user.name>
+        <file.encoding>UTF-8</file.encoding>
+        <!-- Global Maven -->       
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <createChecksum>true</createChecksum>
+        <!-- Project Organisation -->
+        <organization.name>Tawja</organization.name>
+        <organization.code>twj</organization.code>
+        <organization.alias>tawja</organization.alias>
+        <organization.domain>tawja.org</organization.domain>
+        <organization.site>www.tawja.org</organization.site>
+        <organization.logo>http://${organization.site}/assets/img/logo.png</organization.logo>
+        <!-- Deployment Distribution -->
+        <tawja.deploy.protocol>scp</tawja.deploy.protocol>
+        <tawja.deploy.host>ftp.tawja.org</tawja.deploy.host>
+        <tawja.deploy.deployPath>/home/tawja/deploy</tawja.deploy.deployPath>
+        <tawja.deploy.webPath>/home/tawja/www</tawja.deploy.webPath>
+        <tawja.deploy.backupPath>/home/tawja/backup</tawja.deploy.backupPath>
+        <!-- Deployment Maven Site -->
+        <tawja.deploy.site.protocol>scp</tawja.deploy.site.protocol>
+        <tawja.deploy.site.host>ftp.tawja.org</tawja.deploy.site.host>
+        <tawja.deploy.site.webPath>/home/tawja/www</tawja.deploy.site.webPath>
+        <!-- Environment name with tawja-env-* profiles -->
+        <tawja.deploy.envName>test</tawja.deploy.envName>
+        <tawja.repo.envName>prod</tawja.repo.envName>
+    </properties>
+	
+    <profiles>
+        <!-- Environment to sub-domains -->
+        <profile>
+            <id>tawja-env-TEST</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <tawja.deploy.envName>test</tawja.deploy.envName>
+                <tawja.repo.envName>prod</tawja.repo.envName>
+            </properties>
+        </profile>
+        <profile>
+            <id>tawja-env-UAT</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <tawja.deploy.envName>uat</tawja.deploy.envName>
+                <tawja.repo.envName>prod</tawja.repo.envName>
+            </properties>
+        </profile>
+        <profile>
+            <id>tawja-env-PROD</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <tawja.deploy.envName>prod</tawja.deploy.envName>
+                <tawja.repo.envName>prod</tawja.repo.envName>
+            </properties>
+        </profile>
+    </profiles>
+
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+    
+    <developers>
+        <developer>
+            <name>Jaafar BENNANI-SMIRES</name>
+            <organization>Agisfair</organization>
+            <roles>
+                <role>manager</role>
+                <role>developper</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Olivier DUPACQ</name>
+            <organization>Nethia</organization>
+            <roles>
+                <role>manager</role>
+                <role>developper</role>
+            </roles>
+        </developer>
+    </developers>
+    
+    <contributors>
+        <contributor>
+            <name>Christophe DAGUES</name>
+            <organization>Quintecia</organization>
+            <roles>
+                <role>manager</role>
+                <role>advisor</role>
+                <role>tester</role>
+            </roles>
+        </contributor>
+    </contributors>
+
+	<distributionManagement>
+        <site>
+            <id>tawja-website</id>
+            <name>Tawja Documentation Website</name>
+            <url>${tawja.deploy.site.protocol}://${tawja.deploy.site.host}${tawja.deploy.webPath}/${tawja.deploy.envName}/${organization.domain}/project/website</url>
+        </site>
+        <snapshotRepository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>tawja-snapshots</id>
+            <name>Tawja Snapshots Repository</name>
+            <url>${tawja.deploy.protocol}://${tawja.deploy.host}/${tawja.deploy.webPath}/${tawja.repo.envName}/${organization.domain}/repo/maven/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>tawja-releases</id>
+            <name>Tawja Releases Repository</name>
+            <url>${tawja.deploy.protocol}://${tawja.deploy.host}/${tawja.deploy.webPath}/${tawja.repo.envName}/${organization.domain}/repo/maven/releases</url>
+        </repository>
+    </distributionManagement>
+
+    <scm>
+        <connection>scm:git:git@github.com:tawja/twj-root.git</connection>
+        <developerConnection>scm:git:git@bitbucket.org:tawja/twj-root.git</developerConnection>
+        <url>https://github.com/tawja/twj-root/tree/master</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <repositories>
+        <!-- Tawja Snapshots Repository -->
+        <repository> 
+            <id>twj-snapshots-repository</id> 
+            <name>Tawja Snapshots Repository</name>
+            <url>http://www.tawja.org/repo/maven/snapshots</url> 
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <!-- Tawja Releases Repository -->
+        <repository> 
+            <id>twj-releases-repository</id> 
+            <name>Tawja Releases Repository</name>
+            <url>http://www.tawja.org/repo/maven/releases</url> 
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <!-- Tawja Releases LTS Repository -->
+        <repository> 
+            <id>twj-releases-lts-repository</id> 
+            <name>Tawja Releases LTS Repository</name>
+            <url>http://repo.tawja.org/maven/releases</url> 
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <!-- Main Repository -->
+        <repository> 
+            <id>main-releases-repository</id> 
+            <name>Main Repository</name>
+            <url>http://repo.maven.apache.org/maven2</url> 
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <!-- Sonatype OSS Public Repository -->
+        <repository> 
+            <id>sonatype-oss-releases-repository</id> 
+            <name>Sonatype OSS Public Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/releases</url> 
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <!-- Tawja Snapshots Repository -->
+        <pluginRepository> 
+            <id>twj-snapshots-repository</id> 
+            <name>Tawja Snapshots Repository</name>
+            <url>http://www.tawja.org/repo/maven/snapshots</url> 
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+        <!-- Tawja Releases Repository -->
+        <pluginRepository> 
+            <id>twj-releases-repository</id> 
+            <name>Tawja Releases Repository</name>
+            <url>http://www.tawja.org/repo/maven/releases</url> 
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <!-- Tawja Releases LTS Repository -->
+        <pluginRepository> 
+            <id>twj-releases-lts-repository</id> 
+            <name>Tawja Releases LTS Repository</name>
+            <url>http://repo.tawja.org/maven/releases</url> 
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <!-- Others -->
+        <pluginRepository>
+            <id>maven</id>
+            <name>Main Repository</name>
+            <url>http://repo.maven.apache.org/maven2</url>
+            <layout>default</layout>
+        </pluginRepository>
+        <pluginRepository>
+            <id>ossrh</id>
+            <name>Sonatype OSS Repository</name>
+            <url>http://oss.sonatype.org/content/groups/public</url>
+            <layout>default</layout>
+        </pluginRepository>
+    </pluginRepositories>
+</project>
