@@ -290,4 +290,15 @@
             <layout>default</layout>
         </pluginRepository>
     </pluginRepositories>
+
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>2.9</version>
+            </extension>
+        </extensions>
+    </build>
+
 </project>
