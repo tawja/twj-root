@@ -150,11 +150,11 @@
         </contributor>
     </contributors>
 
-	<distributionManagement>
+    <distributionManagement>
         <site>
             <id>tawja-website</id>
             <name>Tawja Documentation Website</name>
-            <url>${tawja.deploy.site.protocol}://${tawja.deploy.site.host}${tawja.deploy.webPath}/${tawja.deploy.envName}/${organization.domain}/project/website</url>
+            <url>${tawja.deploy.site.protocol}://${tawja.deploy.site.host}${tawja.deploy.webPath}/${tawja.deploy.envName}/${organization.domain}/project/root</url>
         </site>
         <snapshotRepository>
             <uniqueVersion>false</uniqueVersion>
