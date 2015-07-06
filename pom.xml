@@ -31,7 +31,7 @@
 
     <groupId>org.tawja</groupId>
     <artifactId>root</artifactId>
-    <version>2015.07.06224134</version>
+    <version>2015.07.06231135</version>
 	
     <packaging>pom</packaging>
 
@@ -74,7 +74,8 @@
         <!-- Environment name with tawja-env-* profiles -->
         <tawja.deploy.envName>test</tawja.deploy.envName>
         <tawja.repo.envName>prod</tawja.repo.envName>
-        
+        <!-- Inner Dependencies Versions -->
+        <twj-maven-utils.version>1.0.0-SNAPSHOT</twj-maven-utils.version>
         <!-- Checks -->
         <tawja.check.release>false</tawja.check.release>
     </properties>
@@ -90,6 +91,14 @@
                 <tawja.deploy.envName>test</tawja.deploy.envName>
                 <tawja.repo.envName>prod</tawja.repo.envName>
             </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
         <profile>
             <id>tawja-env-UAT</id>
@@ -100,6 +109,14 @@
                 <tawja.deploy.envName>uat</tawja.deploy.envName>
                 <tawja.repo.envName>prod</tawja.repo.envName>
             </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
         <profile>
             <id>tawja-env-PROD</id>
@@ -110,6 +127,14 @@
                 <tawja.deploy.envName>prod</tawja.deploy.envName>
                 <tawja.repo.envName>prod</tawja.repo.envName>
             </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 
@@ -331,12 +356,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>        
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-            </plugin>
-        </plugins>
     </build>
 
 </project>
