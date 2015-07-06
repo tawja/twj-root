@@ -74,6 +74,9 @@
         <!-- Environment name with tawja-env-* profiles -->
         <tawja.deploy.envName>test</tawja.deploy.envName>
         <tawja.repo.envName>prod</tawja.repo.envName>
+        
+        <!-- Checks -->
+        <tawja.check.release>false</tawja.check.release>
     </properties>
 	
     <profiles>
@@ -299,6 +302,41 @@
                 <version>2.9</version>
             </extension>
         </extensions>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>1.4</version>
+                    <executions>
+                        <execution>
+                            <id>enforce-no-snapshots</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>enforce</goal>
+                            </goals>
+                            <configuration>
+                                <rules>
+                                    <requireReleaseVersion>
+                                        <message>No Snapshots Allowed!</message>
+                                    </requireReleaseVersion>
+                                    <requireReleaseDeps>
+                                        <message>No Snapshots Sependencies Allowed!</message>
+                                    </requireReleaseDeps>
+                                </rules>
+                                <fail>${tawja.check.release}</fail>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>        
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+            </plugin>
+        </plugins>
     </build>
 
 </project>
