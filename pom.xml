@@ -144,6 +144,24 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>tawja-env-REPO</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <tawja.deploy.envName>prod</tawja.deploy.envName>
+                <tawja.repo.envName>repo</tawja.repo.envName>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
     <licenses>
