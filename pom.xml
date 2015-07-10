@@ -63,7 +63,7 @@
         <organization.logo>http://${organization.site}/assets/img/logo.png</organization.logo>
         <!-- Deployment Distribution -->
         <tawja.deploy.protocol>scp</tawja.deploy.protocol>
-        <tawja.deploy.host>deploy.tawja.com:8085</tawja.deploy.host>
+        <tawja.deploy.host>deploy.tawja.org:8085</tawja.deploy.host>
         <tawja.deploy.deployPath>/var/tawja/deploy</tawja.deploy.deployPath>
         <tawja.deploy.webPath>/var/tawja/www</tawja.deploy.webPath>
         <tawja.deploy.backupPath>/var/tawja/backup</tawja.deploy.backupPath>
